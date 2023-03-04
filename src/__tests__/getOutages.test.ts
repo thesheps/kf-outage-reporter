@@ -1,3 +1,4 @@
+import { when } from 'jest-when';
 import getOutages from '../api/getOutages';
 import Outage from '../models/outage';
 
@@ -9,14 +10,18 @@ describe('getOutages', () => {
       new Outage('foo', new Date('2022-03-01'), new Date('2022-03-02')),
     ];
 
-    jest.spyOn(global, 'fetch').mockImplementation(
-      jest.fn(() =>
-        Promise.resolve({
-          status: 200,
-          json: () => Promise.resolve(expectedOutages),
-        }),
-      ) as jest.Mock,
-    );
+    when(jest.spyOn(global, 'fetch'))
+      .calledWith(
+        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
+      )
+      .mockImplementation(
+        jest.fn(() =>
+          Promise.resolve({
+            status: 200,
+            json: () => Promise.resolve(expectedOutages),
+          }),
+        ) as jest.Mock,
+      );
 
     const outages = await getOutages();
 
@@ -26,14 +31,18 @@ describe('getOutages', () => {
   });
 
   it('Returns an empty collection of Outages on 200 response with bad json payload', async () => {
-    jest.spyOn(global, 'fetch').mockImplementation(
-      jest.fn(() =>
-        Promise.resolve({
-          status: 200,
-          json: () => Promise.resolve('beans on toast'),
-        }),
-      ) as jest.Mock,
-    );
+    when(jest.spyOn(global, 'fetch'))
+      .calledWith(
+        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
+      )
+      .mockImplementation(
+        jest.fn(() =>
+          Promise.resolve({
+            status: 200,
+            json: () => Promise.resolve('beans on toast'),
+          }),
+        ) as jest.Mock,
+      );
 
     const outages = await getOutages();
 
@@ -41,14 +50,18 @@ describe('getOutages', () => {
   });
 
   it('Throws expected error on a non-200 response', async () => {
-    jest.spyOn(global, 'fetch').mockImplementation(
-      jest.fn(() =>
-        Promise.resolve({
-          status: 500,
-          body: 'Oh noes! :(',
-        }),
-      ) as jest.Mock,
-    );
+    when(jest.spyOn(global, 'fetch'))
+      .calledWith(
+        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
+      )
+      .mockImplementation(
+        jest.fn(() =>
+          Promise.resolve({
+            status: 500,
+            body: 'Oh noes! :(',
+          }),
+        ) as jest.Mock,
+      );
 
     return expect(getOutages()).rejects.toThrowError(
       'Error calling /outages: Oh noes! :(',
