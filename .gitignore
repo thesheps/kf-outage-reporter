@@ -26,6 +26,7 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 *.lcov
+test-report
 
 # nyc test coverage
 .nyc_output
@@ -142,4 +143,3 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
-n
