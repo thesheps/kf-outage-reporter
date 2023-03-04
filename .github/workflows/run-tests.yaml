@@ -1,7 +1,6 @@
 name: Run tests 🧪
 on: [push]
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   run-unit-tests:
