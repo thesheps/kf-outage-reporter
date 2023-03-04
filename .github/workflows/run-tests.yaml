@@ -4,23 +4,27 @@ permissions:
   contents: write
 
 jobs:
-  run-jest-tests:
+  run-unit-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
       - run: npm ci
       - run: npm run test:unit
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.6.0
         if: success() || failure()
         with:
           name: Jest tests
-          path: jest-*.xml
+          path: junit.xml
           reporter: jest-junit
 
-  # run-mutation-tests:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3.3.0
-  #     - run: npm ci
-  #     - run: npm run test:mutation
+  run-mutation-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - run: npm ci
+      - run: npm run test:mutation
+      - uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          branch: gh-pages
+          folder: mutation-test-report

@@ -27,6 +27,7 @@ lib-cov
 coverage
 *.lcov
 junit.xml
+/mutation-test-report
 
 # nyc test coverage
 .nyc_output

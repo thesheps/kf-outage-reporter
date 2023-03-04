@@ -9,6 +9,6 @@
   "testRunner_comment": "Take a look at https://stryker-mutator.io/docs/stryker-js/jest-runner for information about the jest plugin.",
   "coverageAnalysis": "perTest",
   "htmlReporter": {
-		"fileName": "test-report/mutation/index.html"
+		"fileName": "mutation-test-report/index.html"
 	}
 }
