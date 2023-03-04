@@ -1,13 +1,24 @@
 import { when } from 'jest-when';
 import getOutages from '../api/getOutages';
-import Outage from '../models/outage';
 
 describe('getOutages', () => {
-  it('Returns a collection of Outages on 200 response', async () => {
+  it('Returns expected Outages on 200 response', async () => {
     const expectedOutages = [
-      new Outage('foo', new Date('2022-01-01'), new Date('2022-01-02')),
-      new Outage('foo', new Date('2022-02-01'), new Date('2022-02-02')),
-      new Outage('foo', new Date('2022-03-01'), new Date('2022-03-02')),
+      {
+        id: 'foo',
+        begin: new Date('2022-01-01'),
+        end: new Date('2022-01-02'),
+      },
+      {
+        id: 'bar',
+        begin: new Date('2022-02-01'),
+        end: new Date('2022-02-02'),
+      },
+      {
+        id: 'baz',
+        begin: new Date('2022-03-01'),
+        end: new Date('2022-03-02'),
+      },
     ];
 
     when(jest.spyOn(global, 'fetch'))
@@ -24,13 +35,16 @@ describe('getOutages', () => {
       );
 
     const outages = await getOutages();
+    expect(outages.isSuccess()).toBeTruthy();
 
-    expect(outages).toContainEqual(expectedOutages[0]);
-    expect(outages).toContainEqual(expectedOutages[1]);
-    expect(outages).toContainEqual(expectedOutages[2]);
+    if (outages.isSuccess()) {
+      expect(outages.value).toContainEqual(expectedOutages[0]);
+      expect(outages.value).toContainEqual(expectedOutages[1]);
+      expect(outages.value).toContainEqual(expectedOutages[2]);
+    }
   });
 
-  it('Returns an empty collection of Outages on 200 response with bad json payload', async () => {
+  it('Returns an Error response with description on 200 response with bad json payload', async () => {
     when(jest.spyOn(global, 'fetch'))
       .calledWith(
         'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
@@ -46,10 +60,16 @@ describe('getOutages', () => {
 
     const outages = await getOutages();
 
-    expect(outages).toHaveLength(0);
+    expect(outages.isError).toBeTruthy();
+
+    if (outages.isError()) {
+      expect(outages.error.message).toEqual(
+        `Unable to deserialize response "beans on toast" to Outage array`,
+      );
+    }
   });
 
-  it('Throws expected error on a non-200 response', async () => {
+  it('Returns expected error on a non-200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
       .calledWith(
         'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
@@ -63,8 +83,14 @@ describe('getOutages', () => {
         ) as jest.Mock,
       );
 
-    return expect(getOutages()).rejects.toThrowError(
-      'Error calling /outages: Oh noes! :(',
-    );
+    const outages = await getOutages();
+
+    expect(outages.isError()).toBeTruthy();
+
+    if (outages.isError()) {
+      expect(outages.error.message).toEqual(
+        `Error calling /outages - Status: "500", Body: "Oh noes! :("`,
+      );
+    }
   });
 });

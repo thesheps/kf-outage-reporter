@@ -1,6 +1,6 @@
-import Outage from '../models/outage';
+import { ErrorResult, Outage, Result, SuccessResult } from './types';
 
-export default async function getOutages(): Promise<Outage[]> {
+export default async function getOutages(): Promise<Result<Outage[]>> {
   const response = await fetch(
     'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
   );
@@ -9,11 +9,15 @@ export default async function getOutages(): Promise<Outage[]> {
     const data = await response.json();
 
     if (data instanceof Array<Outage>) {
-      return data;
+      return SuccessResult.create(data);
     }
 
-    return [];
+    return ErrorResult.create(
+      `Unable to deserialize response "${data}" to Outage array`,
+    );
   }
 
-  throw Error(`Error calling /outages: ${response.body}`);
+  return ErrorResult.create(
+    `Error calling /outages - Status: "${response.status}", Body: "${response.body}"`,
+  );
 }
