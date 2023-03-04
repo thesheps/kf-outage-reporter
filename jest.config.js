@@ -9,7 +9,7 @@ module.exports = {
       "./node_modules/jest-html-reporter",
       {
         pageTitle: "🐙 💪 - Outage reporter test results",
-        outputPath: "./test-report/index.html",
+        outputPath: "./test-report/jest/index.html",
         sort: "titleAsc"
       }
     ]

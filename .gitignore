@@ -26,7 +26,8 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 *.lcov
-/test-report
+/test-report/mutation
+/test-report/jest
 
 # nyc test coverage
 .nyc_output
@@ -143,3 +144,5 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+# stryker temp files
+.stryker-tmp
