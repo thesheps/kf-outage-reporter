@@ -1,5 +1,7 @@
 # 🐙 💪 - Outage Reporter
 
+## Test results
+
 [![Unit tests 🧪](https://github.com/thesheps/kf-outage-reporter/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/thesheps/kf-outage-reporter/actions/workflows/unit-tests.yaml)
 
 [![Mutation tests 🧪](https://github.com/thesheps/kf-outage-reporter/actions/workflows/mutation-tests.yaml/badge.svg)](https://kf-outage-reporter.thesheps.dev/)
@@ -19,13 +21,20 @@ $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bas
 $ nvm install 19.7
 ```
 
-## Testing
+## Tests
 
 Once you have installed the above dependencies, execute the following to install and run all accompanying unit tests:
 
 ```bash
 $ npm ci
 $ npm run test:unit
+```
+
+The repository is configured to use the [stryker-mutator](https://stryker-mutator.io/) framework to analyse the code for any gaps via mutation testing. This is currently configured to run in parallel to the main unit test run, and may take longer to execute:
+
+```bash
+$ npm ci
+$ npm run test:mutation
 ```
 
 ## Running
