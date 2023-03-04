@@ -1,4 +1,4 @@
-# 🐙 💪 - Back-end Test
+# 🐙 💪 Outage Reporter
 
 This repository contains a `TypeScript CLI` which is able to report outages to a `site-outages` API endpoint. It is written in such a way that the library can be extracted and used from a different execution context, EG a `crontab` task, `AWS Lambda` etc.
 
