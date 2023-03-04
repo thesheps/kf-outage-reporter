@@ -1,0 +1,15 @@
+name: Mutation tests 🧪
+on: [push]
+permissions: write-all
+
+jobs:
+  run-mutation-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - run: npm ci
+      - run: npm run test:mutation
+      - uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          branch: gh-pages
+          folder: mutation-test-report
