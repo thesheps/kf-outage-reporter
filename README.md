@@ -23,7 +23,7 @@ $ nvm install 19.7
 
 ## Tests
 
-Once you have installed the above dependencies, execute the following to install and run all accompanying unit tests:
+Once you have installed the above dependencies, execute the following to run all accompanying unit tests:
 
 ```bash
 $ npm ci
@@ -58,3 +58,23 @@ $ npm ci
 ```
 $ npm run report 'norwich-pear-tree'
 ```
+
+## Architecture
+
+A list of Architectural decision records can be found below:
+
+[0001 - Record Architectural Decisions](0001-record-architecture-decisions.md)
+
+[0002 - Use TypeScript](0002-use-typescript.md)
+
+[0003 - Use Github Actions](0003-use-github-actions.md)
+
+[0004 - Use Stryker Mutator](0004-use-stryker-mutator.md)
+
+[0005 - Use Jest When](0005-use-jest-when.md)
+
+[0006 - Use Either Pattern](0006-use-either-pattern.md)
+
+## Known issues
+
+- At present the logic around the filtering of outages is unoptimised. Every check that is made for a safe-listed device ID results in a linear search with an `O(n)` time complexity. This can be trivially solved by the use of a dictionary, but ain't nobody got time for that!

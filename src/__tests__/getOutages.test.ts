@@ -1,5 +1,5 @@
 import { when } from 'jest-when';
-import getOutages from '../api/getOutages';
+import getOutages from '../getOutages';
 
 describe('getOutages', () => {
   it('Returns expected Outages on 200 response', async () => {

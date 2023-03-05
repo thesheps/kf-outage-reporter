@@ -1,14 +1,9 @@
 import { when } from 'jest-when';
-import getSiteInfo from '../api/getSiteInfo';
+import getSiteInfo from '../getSiteInfo';
+import { expectedSiteInfo } from './testData/siteInfos';
 
 describe('getSiteInfo', () => {
   it('Returns expected SiteInfo for known request on 200 response', async () => {
-    const expectedSiteInfo = {
-      id: 'foo',
-      name: 'bar',
-      devices: [{ id: 'baz', name: 'qux' }],
-    };
-
     when(jest.spyOn(global, 'fetch'))
       .calledWith(
         `https://api.krakenflex.systems/interview-tests-mock-api/v1/site-info/foo`,
