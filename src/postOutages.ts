@@ -1,4 +1,4 @@
-import { basePath } from './config';
+import { apiKey, basePath } from './config';
 import { ErrorResult, Outage, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function postOutages(
@@ -8,6 +8,7 @@ export default async function postOutages(
   const response = await fetch(`${basePath}/site-outages/${siteInfo.id}`, {
     method: 'POST',
     body: JSON.stringify(outages),
+    headers: { 'x-api-key': apiKey },
   });
 
   if (response.status == 200) {

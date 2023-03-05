@@ -1,8 +1,10 @@
-import { basePath } from './config';
+import { apiKey, basePath } from './config';
 import { ErrorResult, Outage, Result, SuccessResult } from './types';
 
 export default async function getOutages(): Promise<Result<Outage[]>> {
-  const response = await fetch(`${basePath}/outages`);
+  const response = await fetch(`${basePath}/outages`, {
+    headers: { 'x-api-key': apiKey },
+  });
 
   if (response.status == 200) {
     const data = await response.json();

@@ -1,5 +1,5 @@
 import { when } from 'jest-when';
-import { basePath } from '../config';
+import { apiKey, basePath } from '../config';
 import postOutages from '../postOutages';
 import { SiteInfo } from '../types';
 import { expectedEnhancedOutages } from './testData/outages';
@@ -12,6 +12,7 @@ describe('postOutages', () => {
       .calledWith(`${basePath}/site-outages/foo`, {
         method: 'POST',
         body: JSON.stringify(expectedEnhancedOutages),
+        headers: { 'x-api-key': apiKey },
       })
       .mockImplementation(
         jest.fn(() =>
@@ -38,6 +39,7 @@ describe('postOutages', () => {
       .calledWith(`${basePath}/site-outages/foo`, {
         method: 'POST',
         body: JSON.stringify(expectedEnhancedOutages),
+        headers: { 'x-api-key': apiKey },
       })
       .mockImplementation(postMock);
 

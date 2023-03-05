@@ -1,10 +1,12 @@
-import { basePath } from './config';
+import { apiKey, basePath } from './config';
 import { ErrorResult, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function getSiteInfo(
   siteId: String,
 ): Promise<Result<SiteInfo>> {
-  const response = await fetch(`${basePath}/site-info/${siteId}`);
+  const response = await fetch(`${basePath}/site-info/${siteId}`, {
+    headers: { 'x-api-key': apiKey },
+  });
 
   switch (response.status) {
     case 200:
