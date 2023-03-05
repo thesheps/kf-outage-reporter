@@ -1,17 +1,24 @@
 export interface Device {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
 }
 
 export interface Outage {
-  id: String;
+  id: string;
+  begin: Date;
+  end: Date;
+}
+
+export interface EnhancedOutage {
+  id: string;
+  name: string;
   begin: Date;
   end: Date;
 }
 
 export interface SiteInfo {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   devices: Device[];
 }
 
