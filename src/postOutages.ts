@@ -1,10 +1,11 @@
 import { basePath } from './config';
-import { ErrorResult, Outage, Result, SuccessResult } from './types';
+import { ErrorResult, Outage, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function postOutages(
   outages: Outage[],
+  siteInfo: SiteInfo,
 ): Promise<Result<boolean>> {
-  const response = await fetch(`${basePath}/site-outages`, {
+  const response = await fetch(`${basePath}/site-outages/${siteInfo.id}`, {
     method: 'POST',
     body: JSON.stringify(outages),
   });

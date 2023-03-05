@@ -7,8 +7,5 @@ module.exports = {
   testPathIgnorePatterns : [
     "<rootDir>/src/__tests__/testData/" 
   ],
-  globals: {
-    "BASE_PATH": "https://foo.bar.com",
-    "API_KEY": "beans-on-toast"
-  }
+  setupFiles: ['<rootDir>/.jest/setEnvVars.js'],
 };
