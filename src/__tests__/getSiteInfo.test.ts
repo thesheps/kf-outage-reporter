@@ -1,13 +1,12 @@
 import { when } from 'jest-when';
+import { basePath } from '../config';
 import getSiteInfo from '../getSiteInfo';
 import { expectedSiteInfo } from './testData/siteInfos';
 
 describe('getSiteInfo', () => {
   it('Returns expected SiteInfo for known request on 200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        `https://api.krakenflex.systems/interview-tests-mock-api/v1/site-info/foo`,
-      )
+      .calledWith(`${basePath}/site-info/foo`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
@@ -27,9 +26,7 @@ describe('getSiteInfo', () => {
 
   it('Returns expected Error on 404 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/site-info/foo',
-      )
+      .calledWith(`${basePath}/site-info/foo`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
@@ -50,9 +47,7 @@ describe('getSiteInfo', () => {
 
   it('Returns expected Error on fallback', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/site-info/foo',
-      )
+      .calledWith(`${basePath}/site-info/foo`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({

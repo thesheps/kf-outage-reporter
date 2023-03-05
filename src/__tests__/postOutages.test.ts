@@ -1,4 +1,5 @@
 import { when } from 'jest-when';
+import { basePath } from '../config';
 import getOutages from '../getOutages';
 import postOutages from '../postOutages';
 import { expectedEnhancedOutages } from './testData/outages';
@@ -6,10 +7,10 @@ import { expectedEnhancedOutages } from './testData/outages';
 describe('postOutages', () => {
   it('Returns SuccessResult on 200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/site-outages',
-        { method: 'POST', body: JSON.stringify(expectedEnhancedOutages) },
-      )
+      .calledWith(`${basePath}/site-outages`, {
+        method: 'POST',
+        body: JSON.stringify(expectedEnhancedOutages),
+      })
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
@@ -24,9 +25,7 @@ describe('postOutages', () => {
 
   it('Returns expected error on a non-200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
-      )
+      .calledWith(`${basePath}/outages`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({

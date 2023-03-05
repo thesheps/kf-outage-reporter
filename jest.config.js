@@ -6,5 +6,9 @@ module.exports = {
   reporters: [ "default", "jest-junit" ],
   testPathIgnorePatterns : [
     "<rootDir>/src/__tests__/testData/" 
-  ]
+  ],
+  globals: {
+    "BASE_PATH": "https://foo.bar.com",
+    "API_KEY": "beans-on-toast"
+  }
 };

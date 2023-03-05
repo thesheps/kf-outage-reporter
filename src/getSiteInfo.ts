@@ -1,11 +1,10 @@
+import { basePath } from './config';
 import { ErrorResult, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function getSiteInfo(
   siteId: String,
 ): Promise<Result<SiteInfo>> {
-  const response = await fetch(
-    `https://api.krakenflex.systems/interview-tests-mock-api/v1/site-info/${siteId}`,
-  );
+  const response = await fetch(`${basePath}/site-info/${siteId}`);
 
   switch (response.status) {
     case 200:

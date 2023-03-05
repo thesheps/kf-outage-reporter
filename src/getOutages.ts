@@ -1,9 +1,8 @@
+import { basePath } from './config';
 import { ErrorResult, Outage, Result, SuccessResult } from './types';
 
 export default async function getOutages(): Promise<Result<Outage[]>> {
-  const response = await fetch(
-    'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
-  );
+  const response = await fetch(`${basePath}/outages`);
 
   if (response.status == 200) {
     const data = await response.json();

@@ -1,13 +1,12 @@
 import { when } from 'jest-when';
+import { basePath } from '../config';
 import getOutages from '../getOutages';
 import { expectedOutages } from './testData/outages';
 
 describe('getOutages', () => {
   it('Returns expected Outages on 200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
-      )
+      .calledWith(`${basePath}/outages`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
@@ -29,9 +28,7 @@ describe('getOutages', () => {
 
   it('Returns an Error response with description on 200 response with bad json payload', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
-      )
+      .calledWith(`${basePath}/outages`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
@@ -54,9 +51,7 @@ describe('getOutages', () => {
 
   it('Returns expected error on a non-200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
-      .calledWith(
-        'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
-      )
+      .calledWith(`${basePath}/outages`)
       .mockImplementation(
         jest.fn(() =>
           Promise.resolve({
