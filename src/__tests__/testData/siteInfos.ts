@@ -1,4 +1,6 @@
-export const expectedSiteInfo = {
+import { SiteInfo } from '../../types';
+
+export const expectedSiteInfo: SiteInfo = {
   id: 'foo',
   name: 'bar',
   devices: [
@@ -8,7 +10,7 @@ export const expectedSiteInfo = {
   ],
 };
 
-export const unnamedDeviceSiteInfo = {
+export const unnamedDeviceSiteInfo: SiteInfo = {
   id: 'foo',
   name: 'bar',
   devices: [
@@ -18,7 +20,7 @@ export const unnamedDeviceSiteInfo = {
   ],
 };
 
-export const nonReportingSiteInfo = {
+export const nonReportingSiteInfo: SiteInfo = {
   id: 'foo',
   name: 'bar',
   devices: [],

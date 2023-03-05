@@ -1,26 +1,9 @@
 import { when } from 'jest-when';
 import getOutages from '../getOutages';
+import { expectedOutages } from './testData/outages';
 
 describe('getOutages', () => {
   it('Returns expected Outages on 200 response', async () => {
-    const expectedOutages = [
-      {
-        id: 'foo',
-        begin: new Date('2022-01-01'),
-        end: new Date('2022-01-02'),
-      },
-      {
-        id: 'bar',
-        begin: new Date('2022-02-01'),
-        end: new Date('2022-02-02'),
-      },
-      {
-        id: 'baz',
-        begin: new Date('2022-03-01'),
-        end: new Date('2022-03-02'),
-      },
-    ];
-
     when(jest.spyOn(global, 'fetch'))
       .calledWith(
         'https://api.krakenflex.systems/interview-tests-mock-api/v1/outages',
