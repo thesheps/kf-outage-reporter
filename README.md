@@ -56,7 +56,24 @@ $ npm ci
 3. Execute the CLI for the chosen site:
 
 ```
-$ npm run report 'norwich-pear-tree'
+$ npm start -- -s norwich-pear-tree
+```
+
+For a list of related help options, run
+
+```
+$ npm start help
+
+Usage: outageReporter.ts [options] [command]
+
+  Commands:
+    help     Display help
+    version  Display version
+
+  Options:
+    -h, --help     Output usage information
+    -s, --siteId   The id of the site to report outages for
+    -v, --version  Output the version number
 ```
 
 ## Architecture

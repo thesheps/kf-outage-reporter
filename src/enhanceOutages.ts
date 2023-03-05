@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { mapKnownDevices } from './mapKnownDevices';
 import {
   EnhancedOutage,
@@ -12,6 +13,10 @@ export default async function enhanceOutages(
   outages: Outage[],
   siteInfo: SiteInfo,
 ): Promise<Result<EnhancedOutage[]>> {
+  console.log(
+    chalk.green(`Enhancing outage reports with known device data...`),
+  );
+
   const knownDevices = mapKnownDevices(siteInfo);
 
   if (outages.find((o) => knownDevices[o.id] == undefined)) {

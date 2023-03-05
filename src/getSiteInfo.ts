@@ -1,9 +1,12 @@
+import chalk from 'chalk';
 import { apiKey, basePath } from './config';
 import { ErrorResult, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function getSiteInfo(
   siteId: String,
 ): Promise<Result<SiteInfo>> {
+  console.log(chalk.green('Retrieving siteInfo...'));
+
   const response = await fetch(`${basePath}/site-info/${siteId}`, {
     headers: { 'x-api-key': apiKey },
   });

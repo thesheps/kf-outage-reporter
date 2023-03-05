@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import enhanceOutages from './enhanceOutages';
 import filterOutages from './filterOutages';
 import getOutages from './getOutages';
@@ -8,6 +9,8 @@ import { Result } from './types';
 export default async function reportOutages(
   siteId: string,
 ): Promise<Result<boolean>> {
+  console.log(chalk.green(`Reporting outages for site ${siteId}...`));
+
   const siteInfo = await getSiteInfo(siteId);
   if (siteInfo.isError()) {
     return siteInfo;
@@ -18,15 +21,15 @@ export default async function reportOutages(
     return outages;
   }
 
-  const filteredOutages = await filterOutages(outages.value, siteInfo.value);
-  if (filteredOutages.isError()) {
-    return filteredOutages;
+  const filtered = await filterOutages(outages.value, siteInfo.value);
+  if (filtered.isError()) {
+    return filtered;
   }
 
-  const enhancedOutages = await enhanceOutages(outages.value, siteInfo.value);
-  if (enhancedOutages.isError()) {
-    return enhancedOutages;
+  const enhanced = await enhanceOutages(filtered.value, siteInfo.value);
+  if (enhanced.isError()) {
+    return enhanced;
   }
 
-  return await postOutages(enhancedOutages.value, siteInfo.value);
+  return await postOutages(enhanced.value, siteInfo.value);
 }
