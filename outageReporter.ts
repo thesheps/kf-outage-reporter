@@ -6,6 +6,8 @@ args.option('siteId', 'The id of the site to report outages for');
 
 const flags = args.parse(process.argv);
 
+console.log(chalk.whiteBright('🐙 💪 - Outage Reporter'));
+
 if (flags.siteId) {
   reportOutages(flags.siteId).then((result) => {
     if (result.isSuccess()) {
