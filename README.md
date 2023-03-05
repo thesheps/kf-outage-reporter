@@ -95,3 +95,5 @@ A list of Architectural decision records can be found below:
 ## Known issues
 
 - At present the logic around the filtering of outages is unoptimised. Every check that is made for a safe-listed device ID results in a linear search with an `O(n)` time complexity. This can be trivially solved by the use of a dictionary, but ain't nobody got time for that! ✅ Fixed!
+
+- There is a trivial `circuitBreaker` WIP in the src folder. This is the next piece of obvious development work in this application to make to more resilient to transient HTTP errors.
