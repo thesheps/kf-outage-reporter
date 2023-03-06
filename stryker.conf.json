@@ -10,5 +10,6 @@
   "coverageAnalysis": "perTest",
   "htmlReporter": {
 		"fileName": "mutation-test-report/index.html"
-	}
+	},
+  "ignorePatterns": ["integration.test.ts"]
 }
