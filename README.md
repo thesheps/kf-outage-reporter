@@ -99,3 +99,5 @@ A list of Architectural decision records can be found below:
 - At present the logic around the filtering of outages is unoptimised. Every check that is made for a safe-listed device ID results in a linear search with an `O(n)` time complexity. This can be trivially solved by the use of a dictionary, but ain't nobody got time for that! ✅ Fixed!
 
 - There is a trivial `circuitBreaker` WIP in the src folder. This is the next piece of obvious development work in this application to make to more resilient to transient HTTP errors.
+
+- At the time of writing the `API_KEY` and `BASE_PATH` are both committed to source control in the .env.dev file. This was considered not to be a security vulnerability given this information is considered "test" data only. The CI integration run has these marked as `Github secrets`, and any _real_ production implementation would have these secrets rotated regularly.

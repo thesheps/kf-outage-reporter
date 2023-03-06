@@ -17,7 +17,7 @@
     "start": "env-cmd ts-node outageReporter.ts",
     "test:mutation": "stryker run",
     "test:unit": "jest --group=unit",
-    "test:integration": "env-cmd jest --group=integration"
+    "test:integration": "jest --group=integration"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^6.4.1",
