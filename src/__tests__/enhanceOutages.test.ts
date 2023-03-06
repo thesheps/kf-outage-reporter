@@ -3,6 +3,11 @@ import { expectedSiteInfo, unnamedDeviceSiteInfo } from './testData/siteInfos';
 import enhanceOutages from '../enhanceOutages';
 import { expectedOutages, nonMatchingOutages } from './testData/outages';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('enhanceOutages', () => {
   it('Enhances outages with matching device ids', async () => {
     const enhancedOutages = await enhanceOutages(

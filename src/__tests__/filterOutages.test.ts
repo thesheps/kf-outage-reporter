@@ -7,6 +7,11 @@ import {
   oldOutages,
 } from './testData/outages';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('filterOutages', () => {
   it('Filters outages before 2022-01-01T00:00:00.000Z', async () => {
     const filteredOutages = await filterOutages(

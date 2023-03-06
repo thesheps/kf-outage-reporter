@@ -1,5 +1,6 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
+  runner: 'groups',
   preset: 'ts-jest',
   testEnvironment: 'node',
   coverageDirectory: "test-report/coverage",
@@ -7,5 +8,5 @@ module.exports = {
   testPathIgnorePatterns : [
     "<rootDir>/src/__tests__/testData/" 
   ],
-  setupFiles: ['<rootDir>/.jest/setEnvVars.js'],
+  setupFiles: ['<rootDir>/.jest/setup.js'],
 };

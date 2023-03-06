@@ -1,6 +1,11 @@
 import { mapKnownDevices } from '../mapKnownDevices';
 import { expectedSiteInfo } from './testData/siteInfos';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('mapKnownDevices', () => {
   it('Flattens a sites devices into a Record', () => {
     const flattened = mapKnownDevices(expectedSiteInfo);
