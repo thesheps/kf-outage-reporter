@@ -39,6 +39,13 @@ $ npm ci
 $ npm run test:mutation
 ```
 
+Integration tests are written using `Jest` also, and are executed using a different group:
+
+```bash
+$ npm ci
+$ npm run test:integration
+```
+
 ## Running
 
 To run the app:
@@ -100,4 +107,4 @@ A list of Architectural decision records can be found below:
 
 - There is a trivial `circuitBreaker` WIP in the src folder. This is the next piece of obvious development work in this application to make to more resilient to transient HTTP errors.
 
-- At the time of writing the `API_KEY` and `BASE_PATH` are both committed to source control in the .env.dev file. This was considered not to be a security vulnerability given this information is considered "test" data only. The CI integration run has these marked as `Github secrets`, and any _real_ production implementation would have these secrets rotated regularly.
+- At the time of writing the `API_KEY` and `BASE_PATH` are both committed to source control in the `.env.dev` file. This was considered not to be a security vulnerability given this information is considered "test" data only. The CI integration run has these marked as `Github secrets`, and any _real_ production implementation would have these secrets rotated regularly so as to minimise any potential attack vector.
