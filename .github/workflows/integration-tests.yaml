@@ -3,7 +3,7 @@ on: [push]
 permissions: write-all
 
 jobs:
-  run-unit-tests:
+  run-integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
