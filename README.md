@@ -89,17 +89,17 @@ Usage: outageReporter.ts [options] [command]
 
 A list of Architectural decision records can be found below:
 
-[0001 - Record Architectural Decisions](0001-record-architecture-decisions.md)
+[0001 - Record Architectural Decisions](./doc/adr/0001-record-architecture-decisions.md)
 
-[0002 - Use TypeScript](0002-use-typescript.md)
+[0002 - Use TypeScript](./doc/adr/0002-use-typescript.md)
 
-[0003 - Use Github Actions](0003-use-github-actions.md)
+[0003 - Use Github Actions](./doc/adr/0003-use-github-actions.md)
 
-[0004 - Use Stryker Mutator](0004-use-stryker-mutator.md)
+[0004 - Use Stryker Mutator](./doc/adr/0004-use-stryker-mutator.md)
 
-[0005 - Use Jest When](0005-use-jest-when.md)
+[0005 - Use Jest When](./doc/adr/0005-use-jest-when.md)
 
-[0006 - Use Either Pattern](0006-use-either-pattern.md)
+[0006 - Use Either Pattern](./doc/adr/0006-use-either-pattern.md)
 
 ## Known issues
 
