@@ -1,8 +1,9 @@
 import chalk from 'chalk';
-import { apiKey, basePath } from './config';
 import { ErrorResult, Outage, Result, SiteInfo, SuccessResult } from './types';
 
 export default async function postOutages(
+  basePath: string,
+  apiKey: string,
   outages: Outage[],
   siteInfo: SiteInfo,
 ): Promise<Result<boolean>> {
@@ -18,7 +19,9 @@ export default async function postOutages(
     return SuccessResult.create(true);
   }
 
+  const data = await response.body;
+
   return ErrorResult.create(
-    `Error posting to /outages - Status: "${response.status}", Body: "${response.body}"`,
+    `Error posting to /outages - Status: "${response.status}", Body: "${data}"`,
   );
 }

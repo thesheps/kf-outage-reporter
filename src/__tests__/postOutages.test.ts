@@ -4,6 +4,11 @@ import postOutages from '../postOutages';
 import { SiteInfo } from '../types';
 import { expectedEnhancedOutages } from './testData/outages';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('postOutages', () => {
   const siteInfo: SiteInfo = { id: 'foo', name: 'foo-name', devices: [] };
 
@@ -22,7 +27,12 @@ describe('postOutages', () => {
         ) as jest.Mock,
       );
 
-    const outages = await postOutages(expectedEnhancedOutages, siteInfo);
+    const outages = await postOutages(
+      basePath,
+      apiKey,
+      expectedEnhancedOutages,
+      siteInfo,
+    );
 
     expect(outages.isSuccess()).toBeTruthy();
   });
@@ -43,7 +53,12 @@ describe('postOutages', () => {
       })
       .mockImplementation(postMock);
 
-    const outages = await postOutages(expectedEnhancedOutages, siteInfo);
+    const outages = await postOutages(
+      basePath,
+      apiKey,
+      expectedEnhancedOutages,
+      siteInfo,
+    );
 
     expect(outages.isError()).toBeTruthy();
 

@@ -3,6 +3,11 @@ import { apiKey, basePath } from '../config';
 import getSiteInfo from '../getSiteInfo';
 import { expectedSiteInfo } from './testData/siteInfos';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('getSiteInfo', () => {
   it('Returns expected SiteInfo for known request on 200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
@@ -18,7 +23,7 @@ describe('getSiteInfo', () => {
         ) as jest.Mock,
       );
 
-    const siteInfo = await getSiteInfo('foo');
+    const siteInfo = await getSiteInfo(basePath, apiKey, 'foo');
     expect(siteInfo.isSuccess()).toBeTruthy();
 
     if (siteInfo.isSuccess()) {
@@ -35,16 +40,17 @@ describe('getSiteInfo', () => {
         jest.fn(() =>
           Promise.resolve({
             status: 404,
+            json: () => Promise.resolve('beans on toast'),
           }),
         ) as jest.Mock,
       );
 
-    const siteInfo = await getSiteInfo('foo');
+    const siteInfo = await getSiteInfo(basePath, apiKey, 'foo');
     expect(siteInfo.isError()).toBeTruthy();
 
     if (siteInfo.isError()) {
       expect(siteInfo.error.message).toEqual(
-        'Error finding SiteInfo for SiteId "foo"',
+        'Error retrieving SiteInfo for SiteId "foo"',
       );
     }
   });
@@ -58,12 +64,12 @@ describe('getSiteInfo', () => {
         jest.fn(() =>
           Promise.resolve({
             status: 500,
-            body: 'beans on toast',
+            json: () => Promise.resolve('beans on toast'),
           }),
         ) as jest.Mock,
       );
 
-    const siteInfo = await getSiteInfo('foo');
+    const siteInfo = await getSiteInfo(basePath, apiKey, 'foo');
     expect(siteInfo.isError()).toBeTruthy();
 
     if (siteInfo.isError()) {

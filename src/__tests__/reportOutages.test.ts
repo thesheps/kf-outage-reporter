@@ -1,3 +1,4 @@
+import { apiKey, basePath } from '../config';
 import postOutages from '../postOutages';
 import reportOutages from '../reportOutages';
 import { SuccessResult } from '../types';
@@ -21,13 +22,20 @@ jest.mock('../postOutages', () => ({
     .mockImplementation(jest.fn(() => SuccessResult.create(true)) as jest.Mock),
 }));
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('reportOutages', () => {
   it('Returns SuccessResult on 200 response', async () => {
-    const outages = await reportOutages('foo');
+    const outages = await reportOutages(basePath, apiKey, 'foo');
 
     expect(outages.isSuccess());
 
     expect(postOutages).toHaveBeenCalledWith(
+      basePath,
+      apiKey,
       expectedEnhancedOutages,
       expectedSiteInfo,
     );

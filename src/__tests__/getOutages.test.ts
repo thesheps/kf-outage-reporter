@@ -3,6 +3,11 @@ import { apiKey, basePath } from '../config';
 import getOutages from '../getOutages';
 import { expectedOutages } from './testData/outages';
 
+/**
+ * Unit tests
+ *
+ * @group unit
+ */
 describe('getOutages', () => {
   it('Returns expected Outages on 200 response', async () => {
     when(jest.spyOn(global, 'fetch'))
@@ -18,7 +23,7 @@ describe('getOutages', () => {
         ) as jest.Mock,
       );
 
-    const outages = await getOutages();
+    const outages = await getOutages(basePath, apiKey);
     expect(outages.isSuccess()).toBeTruthy();
 
     if (outages.isSuccess()) {
@@ -42,7 +47,7 @@ describe('getOutages', () => {
         ) as jest.Mock,
       );
 
-    const outages = await getOutages();
+    const outages = await getOutages(basePath, apiKey);
 
     expect(outages.isError).toBeTruthy();
 
@@ -62,12 +67,12 @@ describe('getOutages', () => {
         jest.fn(() =>
           Promise.resolve({
             status: 500,
-            body: 'Oh noes! :(',
+            json: () => Promise.resolve('Oh noes! :('),
           }),
         ) as jest.Mock,
       );
 
-    const outages = await getOutages();
+    const outages = await getOutages(basePath, apiKey);
 
     expect(outages.isError()).toBeTruthy();
 
