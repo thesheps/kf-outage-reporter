@@ -6,6 +6,8 @@
 
 [![Mutation tests 🧪](https://github.com/thesheps/kf-outage-reporter/actions/workflows/mutation-tests.yaml/badge.svg)](https://kf-outage-reporter.thesheps.dev/)
 
+[![Integration tests 🧪](https://github.com/thesheps/kf-outage-reporter/actions/workflows/integration-tests.yaml/badge.svg)](https://github.com/thesheps/kf-outage-reporter/actions/workflows/integration-tests.yaml)
+
 This repository contains a `TypeScript CLI` which is able to report outages to a `site-outages` API endpoint. It is written in such a way that the library can be extracted and used from a different execution context, EG a `crontab` task, `AWS Lambda` etc.
 
 ## Dependencies
